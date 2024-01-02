@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Livraria
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            Gerente g = new Gerente();
+            g.checkOnInfoFromBookWithCode();
         }
     }
 }
