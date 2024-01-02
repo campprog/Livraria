@@ -33,5 +33,9 @@ namespace Livraria
         public void buyBooks()
         {
         }
+
+        public void checkStock()
+        {
+        }
     }
 }
