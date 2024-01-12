@@ -63,13 +63,15 @@ namespace Livraria
             else if (loginOption == 2)
             {
                 Console.WriteLine("Password: ");
-                passGerente = Console.ReadLine();
+                passRepositor = Console.ReadLine();
 
                 if (passRepositor == "repositor1")
                 {
                     Console.WriteLine("Sessao inciada com sucesso");
 
                     Console.WriteLine("1• Consultar a informação de um livro a partir do código");
+
+                    Console.WriteLine("2• Mostrar os livros registados");
 
                     Console.WriteLine("2• Registar livros:");
 
@@ -78,7 +80,20 @@ namespace Livraria
                     Console.WriteLine("4• Comprar livros ");
 
                     Console.WriteLine("5• Consultar stock ");
-                    Console.ReadLine();
+                    string choose = Console.ReadLine();
+                    switch (choose)
+                    {
+                        case "1":
+                            Repositor repositor = new Repositor();
+                            repositor.registBooks();
+                            break;
+
+                        case "2":
+                            Repositor repositor1 = new Repositor();
+                            repositor1.showRegistedBooks();
+                            break;
+                    }
+                    Console.ReadKey();
                 }
                 else
                 {

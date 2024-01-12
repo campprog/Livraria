@@ -14,7 +14,7 @@ namespace Livraria
         private string isbn;
         private string genero;
         private double preco;
-        private int iva;
+        private double taxaIVA;
         private int stock;
 
         public int Codigo
@@ -59,10 +59,10 @@ namespace Livraria
             set { genero = value; }
         }
 
-        public int Iva
+        public double TaxaIVA
         {
-            get { return iva; }
-            set { iva = value; }
+            get { return taxaIVA; }
+            set { taxaIVA = value; }
         }
     }
 }
