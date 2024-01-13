@@ -2,6 +2,10 @@
 {
     public class Gerente : Funcionario, GerenteECaixa
     {
+        public Gerente(string name, string password) : base(name, password)
+        {
+        }
+
         public void listEmployee()
         {
         }

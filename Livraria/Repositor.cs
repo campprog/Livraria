@@ -11,10 +11,13 @@ namespace Livraria
         /// <summary>
         /// add a new book with a new atributes
         /// </summary>
-        private List<Livro> livros = new List<Livro>();
-
-        public void registBooks()
+        public Repositor(string name, string password) : base(name, password)
         {
+        }
+
+        public void registBooks(List<Livro> livros)
+        {
+            //Fazer um try catch para o codigo, no catch meto para voltar a pedir outro codigo ou volto para o menu?
             Console.Write("Código: ");
             int codigo = Convert.ToInt32(Console.ReadLine());
 
@@ -39,25 +42,14 @@ namespace Livraria
             Console.Write("Stock: ");
             int stock = Convert.ToInt32(Console.ReadLine());
 
-            Livro novoLivro = new Livro
-            {
-                Codigo = codigo,
-                Titulo = titulo,
-                Autor = autor,
-                Isbn = isbn,
-                Genero = genero,
-                Preco = preco,
-                TaxaIVA = taxaIVA,
-                Stock = stock
-            };
-
-            livros.Add(novoLivro);
+            Livro livro = new Livro(codigo, titulo, autor, isbn, genero, preco, taxaIVA, stock);
+            livros.Add(livro);
 
             Console.WriteLine($"Livro '{titulo}' registrado!");
             Console.ReadKey();
         }
 
-        public void showRegistedBooks()
+        public void showRegistedBooks(List<Livro> livros)
         {
             Console.WriteLine("Livros Registrados:");
 
@@ -70,7 +62,6 @@ namespace Livraria
 
         public void updateBooks()
         {
-            Console.WriteLine("sdsada");
         }
 
         public void listBooksbyGenre()

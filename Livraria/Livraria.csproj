@@ -47,6 +47,7 @@
     <Compile Include="Funcionario.cs" />
     <Compile Include="Gerente.cs" />
     <Compile Include="GerenteECaixa.cs" />
+    <Compile Include="Livraria.cs" />
     <Compile Include="Livro.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
