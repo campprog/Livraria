@@ -13,9 +13,10 @@ namespace Livraria
         private List<Livro> livros = new List<Livro>
         {
                 // Add instances of Livro to the list
-                new Livro(1, "Book 1", "Author 1", "ISBN123", "Genre 1", 29.99, 0.05, 50),
-                new Livro(2, "Book 2", "Author 2", "ISBN456", "Genre 2", 39.99, 0.08, 30),
-                new Livro(3, "Book 3", "Author 3", "ISBN789", "Genre 3", 19.99, 0.03, 70)
+                new Livro(1, "Book 1", "Tiago Pereira", "ISBN123", "Romance", 29.99, 0.05, 50),
+                new Livro(2, "Book 2", "Pedro Pinheiro", "ISBN456", "Drama", 39.99, 0.08, 30),
+                new Livro(3, "Book 3", "Tiago Pereira", "ISBN789", "Drama", 19.99, 0.03, 70),
+                new Livro(3, "Book 3", "Pedro Pinheiro", "ISBN789", "Drama", 19.99, 0.03, 70),
         };
 
         private List<Gerente> gerentes = new List<Gerente>
@@ -28,11 +29,14 @@ namespace Livraria
             new Repositor("Fernando", "fernando123")
         };
 
-        private List<Caixa> caixistas = new List<Caixa>
+        private List<Caixa> caixas = new List<Caixa>
         {
             new Caixa("dionisio", "dionisio123")
         };
 
+        //quero que quando uma funcao acabar nao volte para o inicio do login, mas sim para as funcoes a que o utilizador logado tem acesso
+        //falta acabar a funcao updatebooks no repositor
+        //meter o login com melhor aspeto
         public void login()
         {
             Console.WriteLine("Login as: ");
@@ -56,7 +60,7 @@ namespace Livraria
                         string passGerente = Console.ReadLine();
                         if (passGerente == gerentes[i].Password)
                         {
-                            gerente();
+                            gerente(gerentes[i]);
                             return;
                         }
                         else
@@ -85,7 +89,7 @@ namespace Livraria
                         string passRepositor = Console.ReadLine();
                         if (passRepositor == repositores[i].Password)
                         {
-                            repositor();
+                            repositor(repositores[i]);
                             return;
                         }
                         else
@@ -100,22 +104,22 @@ namespace Livraria
             }
             else if (loginOption == 3)
             {
-                for (int i = 0; i < caixistas.Count; i++)
+                for (int i = 0; i < caixas.Count; i++)
                 {
                     Console.WriteLine("Escolha o caixista: ");
-                    Console.WriteLine("{0} {1}", i + 1, caixistas[i].Name);
+                    Console.WriteLine("{0} {1}", i + 1, caixas[i].Name);
                 }
                 int option = Convert.ToInt32(Console.ReadLine());
 
-                for (int i = 0; i < caixistas.Count; i++)
+                for (int i = 0; i < caixas.Count; i++)
                 {
                     if (option == i + 1)
                     {
                         Console.WriteLine("Digite a password: ");
                         string passCaixa = Console.ReadLine();
-                        if (passCaixa == caixistas[i].Password)
+                        if (passCaixa == caixas[i].Password)
                         {
-                            caixa();
+                            caixa(caixas[i]);
                             return;
                         }
                         else
@@ -130,21 +134,22 @@ namespace Livraria
             }
         }
 
-        public void gerente()
+        //nao entendi bem porque meteu o Gerente gerente a passar para a funcao aqui
+        public void gerente(Gerente gerente)
         {
             Console.WriteLine("Sessao inciada com sucesso");
 
             Console.WriteLine("1• Consultar a informação de um livro a partir do código");
 
-            Console.WriteLine("2• Listar os utilizadores");
+            Console.WriteLine("2• Consultar stock");
 
             Console.WriteLine("3• Adicionar funcionario");
 
             Console.WriteLine("4• Remover funcionario");
 
-            Console.WriteLine("5• Vender livros");
+            Console.WriteLine("5• Listar os utilizadores");
 
-            Console.WriteLine("6• Consultar stock ");
+            Console.WriteLine("6• Vender livros ");
 
             Console.WriteLine("7• Consultar o total de livros vendidos e respetiva receita ");
 
@@ -153,11 +158,43 @@ namespace Livraria
             {
                 case 1:
 
+                    gerente.checkOnInfoFromBookWithCode(livros);
+                    login();
+                    break;
+
+                case 2:
+                    gerente.checkStock(livros);
+                    login();
+                    break;
+
+                case 3:
+                    gerente.addEmployee(gerentes, repositores, caixas);
+                    login();
+                    break;
+
+                case 4:
+                    gerente.removeEmployee(gerentes, repositores, caixas);
+                    login();
+                    break;
+
+                case 5:
+                    gerente.listEmployee(gerentes, repositores, caixas);
+                    login();
+                    break;
+
+                case 6:
+                    gerente.sellBooks(livros);
+                    login();
+                    break;
+
+                case 7:
+                    gerente.checkTotalBooksSoldAndTotalRevenue(livros);
+                    login();
                     break;
             }
         }
 
-        public void repositor()
+        public void repositor(Repositor repositor)
         {
             Console.WriteLine("Sessao inciada com sucesso");
 
@@ -165,30 +202,62 @@ namespace Livraria
 
             Console.WriteLine("2• Mostrar os livros registados");
 
-            Console.WriteLine("3• Registar livros:");
+            Console.WriteLine("3• Registar livros");
 
-            Console.WriteLine("4• Atualizar livros");
+            Console.WriteLine("4• Consultar livros pelo genero");
 
-            Console.WriteLine("5• Comprar livros ");
+            Console.WriteLine("5• Consultar livros pelo autor");
 
-            Console.WriteLine("6• Consultar stock ");
+            Console.WriteLine("6• Atualizar livros");
+
+            Console.WriteLine("7• Comprar livros ");
+
+            Console.WriteLine("8• Consultar stock ");
             int option = Convert.ToInt32(Console.ReadLine());
 
             switch (option)
             {
                 case 1:
-
+                    repositor.checkOnInfoFromBookWithCode(livros);
                     login();
                     break;
 
                 case 2:
+                    repositor.showRegistedBooks(livros);
+                    login();
+                    break;
 
+                case 3:
+                    repositor.registBooks(livros);
+                    login();
+                    break;
+
+                case 4:
+                    repositor.listBooksbyGenre(livros);
+                    login();
+                    break;
+
+                case 5:
+                    repositor.listBooksByAuthor(livros);
+                    login();
+                    break;
+
+                case 6:
+                    break;
+
+                case 7:
+                    repositor.buyBooks(livros);
+                    login();
+                    break;
+
+                case 8:
+                    repositor.checkStock(livros);
                     login();
                     break;
             }
         }
 
-        public void caixa()
+        public void caixa(Caixa caixa)
         {
             Console.WriteLine("Sessao inciada com sucesso");
 
@@ -201,7 +270,18 @@ namespace Livraria
             switch (option)
             {
                 case 1:
+                    caixa.checkOnInfoFromBookWithCode(livros);
+                    login();
+                    break;
 
+                case 2:
+                    caixa.sellBooks(livros);
+                    login();
+                    break;
+
+                case 3:
+                    caixa.checkStock(livros);
+                    login();
                     break;
             }
         }

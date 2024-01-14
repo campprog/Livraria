@@ -46,7 +46,7 @@
     <Compile Include="Caixa.cs" />
     <Compile Include="Funcionario.cs" />
     <Compile Include="Gerente.cs" />
-    <Compile Include="GerenteECaixa.cs" />
+    <Compile Include="IGerenteECaixa.cs" />
     <Compile Include="Livraria.cs" />
     <Compile Include="Livro.cs" />
     <Compile Include="Program.cs" />

@@ -62,25 +62,68 @@ namespace Livraria
 
         public void updateBooks()
         {
+            //mudar o nome, preco ou qualquer das variaveis que tem
         }
 
-        public void listBooksbyGenre()
+        public void listBooksbyGenre(List<Livro> livros)
         {
+            bool encontrouLivro = false;
+            Console.WriteLine("Escolha o genero que quer ver livros: ex: Drama, Romance, Poema ");
+            string bookGenre = Console.ReadLine();
+            for (int i = 0; i < livros.Count; i++)
+            {
+                if (bookGenre == livros[i].Genero)
+                {
+                    Console.WriteLine("O livro {0}", livros[i].Titulo);
+                    encontrouLivro = true;
+                }
+            }
+            if (!encontrouLivro)
+            {
+                Console.WriteLine("Não há livros disponíveis para o gênero {0}.", bookGenre);
+            }
         }
 
-        public void listBooksByAuthor()
+        public void listBooksByAuthor(List<Livro> livros)
         {
+            bool encontrouLivro = false;
+            Console.WriteLine("Escolha o autor que quer ver livros: ex: Pedro Pinheiro, Tiago Pereira, etc");
+            string bookautor = Console.ReadLine();
+            for (int i = 0; i < livros.Count; i++)
+            {
+                if (bookautor == livros[i].Autor)
+                {
+                    Console.WriteLine("O livro {0}", livros[i].Titulo);
+                    encontrouLivro = true;
+                }
+            }
+            if (!encontrouLivro)
+            {
+                Console.WriteLine("Não há livros disponíveis com o autor {0}.", bookautor);
+            }
         }
 
         /// <summary>
         /// add books to a stock from a existing bookstore stock
         /// </summary>
-        public void buyBooks()
+        public void buyBooks(List<Livro> livros)
         {
-        }
+            Console.WriteLine("Lista de livros que podera comprar para adicionar ao stock existente:");
+            for (int i = 0; i < livros.Count; i++)
+            {
+                Console.WriteLine("O livro {0} com o stock de {1}", livros[i].Titulo, livros[i].Stock);
+            }
+            Console.WriteLine("Escolha o titulo do livro que deseja comprar:");
+            string bookTitle = Console.ReadLine();
 
-        public void checkStock()
-        {
+            for (int i = 0; i < livros.Count; i++)
+            {
+                if (bookTitle == livros[i].Titulo)
+                {
+                    livros[i].Stock = livros[i].Stock + 1;
+                    Console.WriteLine("Livro {0} adicionado ao stock", livros[i].Titulo);
+                }
+            }
         }
     }
 }

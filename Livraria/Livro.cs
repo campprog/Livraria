@@ -16,6 +16,7 @@ namespace Livraria
         private double preco;
         private double taxaIVA;
         private int stock;
+        private int sold;
 
         public int Codigo
         {
@@ -64,6 +65,12 @@ namespace Livraria
             get { return taxaIVA; }
             set { taxaIVA = value; }
         }
+        public int Sold
+        {
+            get { return sold; }
+            set { sold = value; }
+        }
+
 
         public Livro(int codigo, string titulo, string autor, string isbn, string genero, double preco, double taxaIVA, int stock)
         {
@@ -75,6 +82,7 @@ namespace Livraria
             Preco = preco;
             TaxaIVA = taxaIVA;
             Stock = stock;
+            Sold = 0;
         }
     }
 }
