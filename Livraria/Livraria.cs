@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Livraria
 {
     internal class Livraria
     {
-        private int loginOption;
-        private string passRepositor;
-        private string passCaixa;
-
         private List<Livro> livros = new List<Livro>
         {
                 // Add instances of Livro to the list
@@ -25,13 +23,23 @@ namespace Livraria
             new Gerente("Tiago", "tiago123")
         };
 
+        private List<Repositor> repositores = new List<Repositor>
+        {
+            new Repositor("Fernando", "fernando123")
+        };
+
+        private List<Caixa> caixistas = new List<Caixa>
+        {
+            new Caixa("dionisio", "dionisio123")
+        };
+
         public void login()
         {
             Console.WriteLine("Login as: ");
             Console.WriteLine("1• Gerente");
             Console.WriteLine("2• Repositor");
             Console.WriteLine("3• Caixa");
-            loginOption = Convert.ToInt32(Console.ReadLine());
+            int loginOption = Convert.ToInt32(Console.ReadLine());
             if (loginOption == 1)
             {
                 for (int i = 0; i < gerentes.Count; i++)
@@ -42,7 +50,7 @@ namespace Livraria
                 int option = Convert.ToInt32(Console.ReadLine());
                 for (int i = 0; i < gerentes.Count; i++)
                 {
-                    if (option == i)
+                    if (option == i + 1)
                     {
                         Console.WriteLine("Digite a password:");
                         string passGerente = Console.ReadLine();
@@ -54,10 +62,70 @@ namespace Livraria
                         else
                         {
                             Console.WriteLine("Password errada");
+                            login();
                         }
                     }
                 }
                 Console.WriteLine("Nao existe nenhum gerente com essa opcao");
+                login();
+            }
+            else if (loginOption == 2)
+            {
+                for (int i = 0; i < repositores.Count; i++)
+                {
+                    Console.WriteLine("Escolha o repositor: ");
+                    Console.WriteLine("{0} {1}", i + 1, repositores[i].Name);
+                }
+                int option = Convert.ToInt32(Console.ReadLine());
+                for (int i = 0; i < repositores.Count; i++)
+                {
+                    if (option == i + 1)
+                    {
+                        Console.WriteLine("Digite a password: ");
+                        string passRepositor = Console.ReadLine();
+                        if (passRepositor == repositores[i].Password)
+                        {
+                            repositor();
+                            return;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Password incorreta.");
+                            login();
+                        }
+                    }
+                }
+                Console.WriteLine("Nao existe nenhum repositor com essa opcao");
+                login();
+            }
+            else if (loginOption == 3)
+            {
+                for (int i = 0; i < caixistas.Count; i++)
+                {
+                    Console.WriteLine("Escolha o caixista: ");
+                    Console.WriteLine("{0} {1}", i + 1, caixistas[i].Name);
+                }
+                int option = Convert.ToInt32(Console.ReadLine());
+
+                for (int i = 0; i < caixistas.Count; i++)
+                {
+                    if (option == i + 1)
+                    {
+                        Console.WriteLine("Digite a password: ");
+                        string passCaixa = Console.ReadLine();
+                        if (passCaixa == caixistas[i].Password)
+                        {
+                            caixa();
+                            return;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Password incorreta");
+                            login();
+                        }
+                    }
+                }
+                Console.WriteLine("Nao existe nenhum caixa com essa opcao");
                 login();
             }
         }
@@ -89,109 +157,53 @@ namespace Livraria
             }
         }
 
-        /*
-        Console.WriteLine("Login as: ");
-        Console.WriteLine("1• Gerente");
-        Console.WriteLine("2• Repositor");
-        Console.WriteLine("3• Caixa");
-        loginOption = Convert.ToInt32(Console.ReadLine());
-
-        if (loginOption == 1)
+        public void repositor()
         {
-            Console.WriteLine("Password: ");
-            Console.WriteLine();
-            passGerente = Console.ReadLine();
+            Console.WriteLine("Sessao inciada com sucesso");
 
-            if (passGerente == "gerente1")
+            Console.WriteLine("1• Consultar a informação de um livro a partir do código");
+
+            Console.WriteLine("2• Mostrar os livros registados");
+
+            Console.WriteLine("3• Registar livros:");
+
+            Console.WriteLine("4• Atualizar livros");
+
+            Console.WriteLine("5• Comprar livros ");
+
+            Console.WriteLine("6• Consultar stock ");
+            int option = Convert.ToInt32(Console.ReadLine());
+
+            switch (option)
             {
-                Console.WriteLine("Sessao inciada com sucesso");
+                case 1:
 
-                Console.WriteLine("1• Consultar a informação de um livro a partir do código");
-                //Gerente g = new Gerente();
+                    login();
+                    break;
 
-                Console.WriteLine("2• Listar os utilizadores");
+                case 2:
 
-                Console.WriteLine("3• Adicionar funcionario");
-
-                Console.WriteLine("4• Remover funcionario");
-
-                Console.WriteLine("5• Vender livros");
-
-                Console.WriteLine("6• Consultar stock ");
-
-                Console.WriteLine("7• Consultar o total de livros vendidos e respetiva receita ");
-                Console.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine("Password incorreta");
-                Console.ReadLine();
+                    login();
+                    break;
             }
         }
-        else if (loginOption == 2)
+
+        public void caixa()
         {
-            Console.WriteLine("Password: ");
-            passRepositor = Console.ReadLine();
+            Console.WriteLine("Sessao inciada com sucesso");
 
-            if (passRepositor == "repositor1")
+            Console.WriteLine("1• Consultar a informação de um livro a partir do código");
+
+            Console.WriteLine("2• vender livros");
+
+            Console.WriteLine("3• Consultar stock ");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
             {
-                Console.WriteLine("Sessao inciada com sucesso");
+                case 1:
 
-                Console.WriteLine("1• Consultar a informação de um livro a partir do código");
-
-                Console.WriteLine("2• Mostrar os livros registados");
-
-                Console.WriteLine("3• Registar livros:");
-
-                Console.WriteLine("4• Atualizar livros");
-
-                Console.WriteLine("5• Comprar livros ");
-
-                Console.WriteLine("6• Consultar stock ");
-                string choose = Console.ReadLine();
-                //Repositor repositor = new Repositor();
-                switch (choose)
-                {
-                    case "1":
-                        // repositor.registBooks(livros);
-                        login();
-                        break;
-
-                    case "2":
-                        // repositor.showRegistedBooks(livros);
-                        login();
-                        break;
-                }
-                Console.ReadKey();
-            }
-            else
-            {
-                Console.WriteLine("Password incorreta");
-                Console.WriteLine();
+                    break;
             }
         }
-        else if (loginOption == 3)
-        {
-            Console.WriteLine("Password: ");
-            passCaixa = Console.ReadLine();
-
-            if (passCaixa == "caixa1")
-            {
-                Console.WriteLine("Sessao inciada com sucesso");
-
-                Console.WriteLine("1• Consultar a informação de um livro a partir do código");
-
-                Console.WriteLine("2• vender livros");
-
-                Console.WriteLine("3• Consultar stock ");
-                Console.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine("Password incorreta");
-                Console.ReadLine();
-            }
-        }
-   */
     }
 }
