@@ -243,6 +243,8 @@ namespace Livraria
                     break;
 
                 case 6:
+                    repositor.updateBooks(livros);
+                    login();
                     break;
 
                 case 7:

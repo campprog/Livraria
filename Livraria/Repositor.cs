@@ -60,9 +60,84 @@ namespace Livraria
             Console.ReadKey();
         }
 
-        public void updateBooks()
+        public void updateBooks(List<Livro> livros)
         {
             //mudar o nome, preco ou qualquer das variaveis que tem
+
+            Console.WriteLine("Qual o livro que deseja alterar dados?");
+            foreach (Livro livro in livros)
+            {
+                Console.WriteLine("{0}", livro.Titulo);
+            }
+
+            string bookTitle = Console.ReadLine();
+            foreach (Livro livro in livros)
+
+            {
+                if (bookTitle == livro.Titulo)
+                {
+                    Console.WriteLine("Tem estes parametros que podera alterar:");
+                    Console.WriteLine("codigo");
+                    Console.WriteLine("titulo");
+                    Console.WriteLine("autor");
+                    Console.WriteLine("isbn");
+                    Console.WriteLine("genero");
+                    Console.WriteLine("preco");
+                    Console.WriteLine("taxaIVA");
+                    Console.WriteLine("stock");
+                    Console.WriteLine("Escreva qual deseja alrerar:");
+                    string parameters = Console.ReadLine();
+                    switch (parameters)
+                    {
+                        case "codigo":
+                            Console.WriteLine("Novo Código:");
+                            livro.Codigo = Convert.ToInt32(Console.ReadLine());
+                            break;
+
+                        case "titulo":
+                            Console.WriteLine("Novo Título:");
+                            livro.Titulo = Console.ReadLine();
+                            break;
+
+                        case "autor":
+                            Console.WriteLine("Novo Autor:");
+                            livro.Autor = Console.ReadLine();
+                            break;
+
+                        case "isbn":
+                            Console.WriteLine("Novo Isbn:");
+                            livro.Isbn = Console.ReadLine();
+                            break;
+
+                        case "genero":
+                            Console.WriteLine("Novo Genero:");
+                            livro.Genero = Console.ReadLine();
+                            break;
+
+                        case "preco":
+                            Console.WriteLine("Novo Preço:");
+                            livro.Preco = Convert.ToDouble(Console.ReadLine());
+                            break;
+
+                        case "taxaIVA":
+                            Console.WriteLine("Nova TaxaIVA:");
+                            livro.TaxaIVA = Convert.ToDouble(Console.ReadLine());
+                            break;
+
+                        case "stock":
+                            Console.WriteLine("Novo Stock:");
+                            livro.Stock = Convert.ToInt32(Console.ReadLine());
+                            break;
+
+                        default:
+                            Console.WriteLine("Parâmetro inválido.");
+                            break;
+                    }
+
+                    Console.WriteLine("Livro atualizado com sucesso!");
+                }
+            }
+            Console.WriteLine("Livro nao encontrado");
         }
 
         public void listBooksbyGenre(List<Livro> livros)
