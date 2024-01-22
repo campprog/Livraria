@@ -9,6 +9,14 @@ namespace Livraria
         {
         }
 
+        private static void ApplyColor(Action<string> printFunction, string message, ConsoleColor color)
+        {
+            ConsoleColor originalColor = Console.ForegroundColor;
+            Console.ForegroundColor = color;
+            printFunction(message);
+            Console.ForegroundColor = originalColor;
+        }
+
         public void addEmployee(List<Gerente> gerentes, List<Repositor> repositores, List<Caixa> caixas)
         {
             Console.WriteLine("Qual é o funcionario que deseja empregar: ");
@@ -63,10 +71,6 @@ namespace Livraria
             }
         }
 
-        //Código do artigo, quantidade, preço unitário e taxa de IVA. Podem ser inseridos um nº de livros
-        //indeterminado.Termina a introdução de dados inserindo o código de artigo 0.
-        //Se a soma dos valores da venda for superior a 50 €, aplica um desconto ao valor total de 10%.
-        //No final deverá mostrar o total, o desconto, o valor do IVA e o total depois do IVA.
         public void sellBooks(List<Livro> livros)
         {
             Console.WriteLine("Deseja vender que livro");
@@ -94,7 +98,7 @@ namespace Livraria
             foreach (Livro item in livros)
             {
                 totalBooksSold += item.Sold;
-                totalReceita += item.Sold * (item.Preco);//+(item.precoitem.taxaIVA));
+                totalReceita += item.Sold * (item.Preco + (item.Preco * (item.TaxaIVA / 100)));
             }
             Console.Clear();
             Console.WriteLine("O total de livros vendidos foi de : {0}", totalBooksSold);
@@ -104,6 +108,7 @@ namespace Livraria
         public void listEmployee(List<Gerente> gerentes, List<Repositor> repositores, List<Caixa> caixas)
         {
             Console.Clear();
+
             Console.WriteLine("Qual é os funcionarios que deseja listar: ");
             Console.WriteLine("1• Gerente");
             Console.WriteLine("2• Repositor");
@@ -121,6 +126,7 @@ namespace Livraria
                 }
                 else
                 {
+                    // applyColor(Console.WriteLine, "Nao tem gerentes para listar.", ConsoleColor.Red);
                     Console.WriteLine("Nao tem gerentes para listar.");
                 }
             }
@@ -188,10 +194,11 @@ namespace Livraria
                     {
                         Console.WriteLine("O gerente {0} foi removido", gerentes[i].Name);
                         gerentes.RemoveAt(i);
+                        return;
                     }
                 }
 
-                Console.WriteLine("Gerente inexistente.");
+                // Console.WriteLine("Gerente inexistente.");
             }
             else if (option == 2)
             {

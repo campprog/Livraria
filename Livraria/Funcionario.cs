@@ -16,6 +16,27 @@ public abstract class Funcionario
         Password = password;
     }
 
+    protected static int askIntOption(string message)
+    {
+        int option = -1;
+        bool isValidOption = false;
+        do
+        {
+            Console.WriteLine(message);
+
+            try
+            {
+                option = Convert.ToInt32(Console.ReadLine());
+                isValidOption = true;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Opcao invalida");
+            }
+        } while (!isValidOption);
+        return option;
+    }
+
     public void checkOnInfoFromBookWithCode(List<Livro> livros)
     {
         Console.WriteLine("Codigos dos livros:");

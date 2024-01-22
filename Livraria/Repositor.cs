@@ -203,26 +203,55 @@ namespace Livraria
         }
 
         /// <summary>
-        /// add books to a stock from a existing bookstore stock and ask how many to you want to add
+        /// Código do artigo, quantidade, preço unitário e taxa de IVA. Podem ser inseridos um nº de livros
+        //indeterminado.Termina a introdução de dados inserindo o código de artigo 0.
+        //Se a soma dos valores da venda for superior a 50 €, aplica um desconto ao valor total de 10%.
+        //No final deverá mostrar o total, o desconto, o valor do IVA e o total depois do IVA.
+
+        //o preco que compro is diferente do preco do regist books, porque ao registrar estou a meter o preco para o public
+        //recebe do user o artigo e quantidade mas porque pede tambem o preco e a taxa??
+        //fazer um while em que recebe o codigo de um livro e adiciona
+        //verificar se existe stock
         /// </summary>
         public void buyBooks(List<Livro> livros)
         {
-            Console.WriteLine("Lista de livros que podera comprar para adicionar ao stock existente:");
-            for (int i = 0; i < livros.Count; i++)
+            int codigo;
+            double total = 0;
+            double totalIVA = 0;
+            do
             {
-                Console.WriteLine("O livro {0} com o stock de {1}", livros[i].Titulo, livros[i].Stock);
-            }
-            Console.WriteLine("Escolha o titulo do livro que deseja comprar:");
-            string bookTitle = Console.ReadLine();
-
-            for (int i = 0; i < livros.Count; i++)
-            {
-                if (bookTitle == livros[i].Titulo)
+                Console.WriteLine("Lista de livros que podera comprar para adicionar ao stock existente:");
+                for (int i = 0; i < livros.Count; i++)
                 {
-                    Console.Clear();
-                    livros[i].Stock = livros[i].Stock + 1;
-                    Console.WriteLine("Livro {0} adicionado ao stock", livros[i].Titulo);
+                    Console.WriteLine("O livro {0} com o stock de {1} e codigo {2}", livros[i].Titulo, livros[i].Stock, livros[i].Codigo);
                 }
+                codigo = askIntOption("Escolha o codigo do livro que deseja comprar:");
+
+                for (int i = 0; i < livros.Count; i++)
+                {
+                    if (codigo == livros[i].Codigo)
+                    {
+                        Console.Clear();
+                        int quantidade = askIntOption("Quantidade:");
+                        livros[i].Stock = livros[i].Stock + quantidade;
+
+                        int preco = askIntOption("Preco: ");
+
+                        int iva = askIntOption("Taxa de IVA: ");
+
+                        Console.WriteLine("Livro {0} com o codigo {1} foi adicionado ao stock", livros[i].Titulo, livros[i].Codigo);
+                        total = total + (preco * quantidade);
+                        totalIVA = totalIVA + (preco * iva / 100);
+                    }
+                }
+            } while (codigo != 0);
+            if (total > 50)
+            {
+                Console.WriteLine("Total fica {0} devido a compra ultrapassar os 50 euros fica com desconto de 10%, o valor do IVA sera de {1}% e o valor total com o IVA sera de {2}", total * 0.9, totalIVA, (total * 0.9) + totalIVA);
+            }
+            else
+            {
+                Console.WriteLine("Total fica por {0}, o valor do IVA sera de {1} e o valor total com o IVA sera de {2}", total, totalIVA, total + totalIVA);
             }
         }
     }

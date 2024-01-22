@@ -38,6 +38,8 @@ namespace Livraria
         //fazer as exeptions
         //fazer o que pede no relatorio para a function sellBooks()
         //meter o login com melhor aspeto
+        //fazer o while para todas as perguntas?
+        //meter a caixa a vermelho quando da resposta invalida
         private static string GetPassword()
         {
             StringBuilder password = new StringBuilder();
@@ -61,10 +63,6 @@ namespace Livraria
             } while (key.Key != ConsoleKey.Enter);
 
             return password.ToString();
-        }
-
-        public void exception()
-        {
         }
 
         public void login()
@@ -324,7 +322,7 @@ namespace Livraria
         {
             while (true)
             {
-                Console.WriteLine("Menu Caixa:");
+                Console.WriteLine("\nMenu Caixa:");
 
                 Console.WriteLine("1• Consultar a informação de um livro a partir do código");
 
