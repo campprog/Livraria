@@ -8,27 +8,47 @@ namespace Livraria
 {
     public class Repositor : Funcionario
     {
-        /// <summary>
-        /// add a new book with a new atributes
-        /// </summary>
         public Repositor(string name, string password) : base(name, password)
         {
         }
 
         public void registBooks(List<Livro> livros)
         {
-            //Fazer um try catch para o codigo, no catch meto para voltar a pedir outro codigo ou volto para o menu?
             Console.Write("Código: ");
             int codigo = Convert.ToInt32(Console.ReadLine());
+            foreach (Livro livro in livros)
+            {
+                if (codigo == livro.Codigo)
+                {
+                    Console.WriteLine("Codigo ja existente");
+                    return;
+                }
+            }
 
             Console.Write("Título: ");
             string titulo = Console.ReadLine();
+            foreach (Livro livro in livros)
+            {
+                if (titulo == livro.Titulo)
+                {
+                    Console.WriteLine("Titulo ja existente");
+                    return;
+                }
+            }
 
             Console.Write("Autor: ");
             string autor = Console.ReadLine();
 
             Console.Write("ISBN: ");
             string isbn = Console.ReadLine();
+            foreach (Livro livro in livros)
+            {
+                if (isbn == livro.Isbn)
+                {
+                    Console.WriteLine("ISBN ja existente");
+                    return;
+                }
+            }
 
             Console.Write("Género: ");
             string genero = Console.ReadLine();
@@ -42,28 +62,26 @@ namespace Livraria
             Console.Write("Stock: ");
             int stock = Convert.ToInt32(Console.ReadLine());
 
-            Livro livro = new Livro(codigo, titulo, autor, isbn, genero, preco, taxaIVA, stock);
-            livros.Add(livro);
-
+            Livro novoLivro = new Livro(codigo, titulo, autor, isbn, genero, preco, taxaIVA, stock);
+            livros.Add(novoLivro);
+            Console.Clear();
             Console.WriteLine($"Livro '{titulo}' registrado!");
-            Console.ReadKey();
         }
 
         public void showRegistedBooks(List<Livro> livros)
         {
+            Console.Clear();
             Console.WriteLine("Livros Registrados:");
 
             foreach (var livro in livros)
             {
                 Console.WriteLine($"Código: {livro.Codigo}, Título: {livro.Titulo}, Autor: {livro.Autor}, ISBN: {livro.Isbn}, Gênero: {livro.Genero}, Preço: {livro.Preco}, Taxa de IVA: {livro.TaxaIVA}, Stock: {livro.Stock}");
             }
-            Console.ReadKey();
         }
 
         public void updateBooks(List<Livro> livros)
         {
-            //mudar o nome, preco ou qualquer das variaveis que tem
-
+            Console.Clear();
             Console.WriteLine("Qual o livro que deseja alterar dados?");
             foreach (Livro livro in livros)
             {
@@ -135,8 +153,10 @@ namespace Livraria
                     }
 
                     Console.WriteLine("Livro atualizado com sucesso!");
+                    return;
                 }
             }
+
             Console.WriteLine("Livro nao encontrado");
         }
 
@@ -149,12 +169,14 @@ namespace Livraria
             {
                 if (bookGenre == livros[i].Genero)
                 {
+                    Console.Clear();
                     Console.WriteLine("O livro {0}", livros[i].Titulo);
                     encontrouLivro = true;
                 }
             }
             if (!encontrouLivro)
             {
+                Console.Clear();
                 Console.WriteLine("Não há livros disponíveis para o gênero {0}.", bookGenre);
             }
         }
@@ -168,18 +190,20 @@ namespace Livraria
             {
                 if (bookautor == livros[i].Autor)
                 {
+                    Console.Clear();
                     Console.WriteLine("O livro {0}", livros[i].Titulo);
                     encontrouLivro = true;
                 }
             }
             if (!encontrouLivro)
             {
+                Console.Clear();
                 Console.WriteLine("Não há livros disponíveis com o autor {0}.", bookautor);
             }
         }
 
         /// <summary>
-        /// add books to a stock from a existing bookstore stock
+        /// add books to a stock from a existing bookstore stock and ask how many to you want to add
         /// </summary>
         public void buyBooks(List<Livro> livros)
         {
@@ -195,6 +219,7 @@ namespace Livraria
             {
                 if (bookTitle == livros[i].Titulo)
                 {
+                    Console.Clear();
                     livros[i].Stock = livros[i].Stock + 1;
                     Console.WriteLine("Livro {0} adicionado ao stock", livros[i].Titulo);
                 }

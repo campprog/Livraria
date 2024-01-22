@@ -27,6 +27,8 @@ namespace Livraria
 
                 Gerente gerente = new Gerente(nomeGerente, passGerente);
                 gerentes.Add(gerente);
+                Console.Clear();
+                Console.WriteLine("Gerente adicionado.");
             }
             else if (option == 2)
             {
@@ -38,6 +40,8 @@ namespace Livraria
 
                 Repositor repositor = new Repositor(nomeRepositores, passRepositor);
                 repositores.Add(repositor);
+                Console.Clear();
+                Console.WriteLine("Repositor adicionado.");
             }
             else if (option == 3)
             {
@@ -49,13 +53,20 @@ namespace Livraria
 
                 Caixa caixa = new Caixa(nomeCaixa, passCaixa);
                 caixas.Add(caixa);
+                Console.Clear();
+                Console.WriteLine("Caixa adicionado.");
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Opção invalida.");
             }
         }
 
+        //Código do artigo, quantidade, preço unitário e taxa de IVA. Podem ser inseridos um nº de livros
+        //indeterminado.Termina a introdução de dados inserindo o código de artigo 0.
+        //Se a soma dos valores da venda for superior a 50 €, aplica um desconto ao valor total de 10%.
+        //No final deverá mostrar o total, o desconto, o valor do IVA e o total depois do IVA.
         public void sellBooks(List<Livro> livros)
         {
             Console.WriteLine("Deseja vender que livro");
@@ -69,6 +80,8 @@ namespace Livraria
                 if (option == livros[i].Titulo)
                 {
                     livros[i].Stock = livros[i].Stock - 1;
+                    livros[i].Sold++;
+                    Console.Clear();
                     Console.WriteLine("Livro vendido.");
                 }
             }
@@ -83,12 +96,14 @@ namespace Livraria
                 totalBooksSold += item.Sold;
                 totalReceita += item.Sold * (item.Preco);//+(item.precoitem.taxaIVA));
             }
+            Console.Clear();
             Console.WriteLine("O total de livros vendidos foi de : {0}", totalBooksSold);
             Console.WriteLine("E o total de receita acumulado de todas as vendas foi de: {0}", totalReceita);
         }
 
         public void listEmployee(List<Gerente> gerentes, List<Repositor> repositores, List<Caixa> caixas)
         {
+            Console.Clear();
             Console.WriteLine("Qual é os funcionarios que deseja listar: ");
             Console.WriteLine("1• Gerente");
             Console.WriteLine("2• Repositor");
@@ -121,6 +136,7 @@ namespace Livraria
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Nao existe repositores para listar.");
                 }
             }
@@ -131,22 +147,26 @@ namespace Livraria
                     Console.WriteLine("Os caixas da livraria são: ");
                     for (int i = 0; i < caixas.Count; i++)
                     {
+                        Console.Clear();
                         Console.WriteLine("{0}", caixas[i].Name);
                     }
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Nao existe caixas para listar.");
                 }
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Opção invalida");
             }
         }
 
         public void removeEmployee(List<Gerente> gerentes, List<Repositor> repositores, List<Caixa> caixas)
         {
+            Console.Clear();
             Console.WriteLine("Escolha o tipo de funcionario que deseja despedir:");
             Console.WriteLine("1• Gerente");
             Console.WriteLine("2• Repositor");
@@ -164,11 +184,13 @@ namespace Livraria
                 string optionGerente = Console.ReadLine();
                 for (int i = 0; i < gerentes.Count; i++)
                 {
-                    if (optionGerente == repositores[i].Name)
+                    if (optionGerente == gerentes[i].Name)
                     {
+                        Console.WriteLine("O gerente {0} foi removido", gerentes[i].Name);
                         gerentes.RemoveAt(i);
                     }
                 }
+
                 Console.WriteLine("Gerente inexistente.");
             }
             else if (option == 2)
@@ -185,10 +207,11 @@ namespace Livraria
                 {
                     if (optionRepositor == repositores[i].Name)
                     {
+                        Console.WriteLine("O repositor {0} foi removido", repositores[i].Name);
                         repositores.RemoveAt(i);
-                        return;
                     }
                 }
+
                 Console.WriteLine("Repositor inexistente.");
             }
             else if (option == 3)
@@ -205,9 +228,11 @@ namespace Livraria
                 {
                     if (optionCaixa == caixas[i].Name)
                     {
+                        Console.WriteLine("O caixa {0} foi removido", caixas[i].Name);
                         caixas.RemoveAt(i);
                     }
                 }
+
                 Console.WriteLine("Caixa inexistente.");
             }
         }

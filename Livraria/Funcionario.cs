@@ -25,12 +25,13 @@ public abstract class Funcionario
         }
         Console.WriteLine("Digite o codigo do livro");
 
-        int codigoLivro = Convert.ToInt32(Console.ReadLine());
+        int codigoLivro = 1 + Convert.ToInt32(Console.ReadLine());
 
         for (int i = 0; i < livros.Count; i++)
         {
             if (codigoLivro == livros[i].Codigo)
             {
+                Console.Clear();
                 Console.WriteLine("O Titulo do livro é {0}", livros[i].Titulo);
                 Console.WriteLine("O autor do livro é {0}", livros[i].Autor);
                 Console.WriteLine("O ISBN do livro é {0}", livros[i].Isbn);
@@ -38,19 +39,24 @@ public abstract class Funcionario
                 Console.WriteLine("O Preco do livro é {0}", livros[i].Preco);
                 Console.WriteLine("A taxa de IVA do livro é {0}", livros[i].TaxaIVA);
                 Console.WriteLine("O Stock do livro é {0}", livros[i].Stock);
+                return;
             }
         }
+        Console.Clear();
         Console.WriteLine("Codigo invalido");
     }
 
     public void checkStock(List<Livro> livros)
     {
         int soma = 0;
+        Console.Clear();
         for (int i = 0; i < livros.Count; i++)
         {
-            Console.WriteLine("O livro com titulo {0} tem o stock de {1}", livros[i].Titulo, livros[i].Stock);
             soma = soma + livros[i].Stock;
+
+            Console.WriteLine("O livro com titulo {0} tem o stock de {1}", livros[i].Titulo, livros[i].Stock);
         }
+
         Console.WriteLine("O stock de todos os livros é de {0}", soma);
     }
 }

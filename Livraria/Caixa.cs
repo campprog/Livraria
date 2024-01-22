@@ -22,6 +22,7 @@ namespace Livraria
                 if (option == livros[i].Titulo)
                 {
                     livros[i].Stock = livros[i].Stock - 1;
+                    Console.Clear();
                     Console.WriteLine("Livro vendido.");
                 }
             }
