@@ -36,10 +36,11 @@ namespace Livraria
         };
 
         //fazer as exeptions
-        //fazer o que pede no relatorio para a function sellBooks()
+
         //meter o login com melhor aspeto
-        //fazer o while para todas as perguntas?
+
         //meter a caixa a vermelho quando da resposta invalida
+        //fazer o try and catch proprio para a livraria
         private static string GetPassword()
         {
             StringBuilder password = new StringBuilder();
@@ -82,6 +83,7 @@ namespace Livraria
                     Console.WriteLine("Escolha o gerente:");
                     Console.WriteLine("{0} {1}", i + 1, gerentes[i].Name);
                 }
+
                 int option = Convert.ToInt32(Console.ReadLine());
                 for (int i = 0; i < gerentes.Count; i++)
                 {
@@ -168,7 +170,6 @@ namespace Livraria
             }
         }
 
-        //nao entendi bem porque meteu o Gerente gerente a passar para a funcao aqui
         public void gerenteMenu(Gerente gerente) //passa-se gerente que fiz login
         {
             while (true)

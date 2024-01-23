@@ -16,17 +16,38 @@ public abstract class Funcionario
         Password = password;
     }
 
-    protected static int askIntOption(string message)
+    public int askIntOption(string message)
     {
         int option = -1;
         bool isValidOption = false;
         do
         {
-            Console.WriteLine(message);
+            Console.Write(message);
 
             try
             {
                 option = Convert.ToInt32(Console.ReadLine());
+                isValidOption = true;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Opcao invalida");
+            }
+        } while (!isValidOption);
+        return option;
+    }
+
+    public double askdoubleOption(string message)
+    {
+        double option = -1;
+        bool isValidOption = false;
+        do
+        {
+            Console.Write(message);
+
+            try
+            {
+                option = Convert.ToDouble(Console.ReadLine());
                 isValidOption = true;
             }
             catch (FormatException)
@@ -44,9 +65,8 @@ public abstract class Funcionario
         {
             Console.WriteLine("{0}", livros[i].Codigo);
         }
-        Console.WriteLine("Digite o codigo do livro");
 
-        int codigoLivro = 1 + Convert.ToInt32(Console.ReadLine());
+        int codigoLivro = 1 + askIntOption("Digite o codigo do livro");
 
         for (int i = 0; i < livros.Count; i++)
         {

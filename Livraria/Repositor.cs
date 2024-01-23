@@ -14,8 +14,7 @@ namespace Livraria
 
         public void registBooks(List<Livro> livros)
         {
-            Console.Write("Código: ");
-            int codigo = Convert.ToInt32(Console.ReadLine());
+            int codigo = askIntOption("Código do livro:");
             foreach (Livro livro in livros)
             {
                 if (codigo == livro.Codigo)
@@ -25,7 +24,7 @@ namespace Livraria
                 }
             }
 
-            Console.Write("Título: ");
+            Console.Write("Título do livro: ");
             string titulo = Console.ReadLine();
             foreach (Livro livro in livros)
             {
@@ -36,10 +35,10 @@ namespace Livraria
                 }
             }
 
-            Console.Write("Autor: ");
+            Console.Write("Autor do livro: ");
             string autor = Console.ReadLine();
 
-            Console.Write("ISBN: ");
+            Console.Write("ISBN do livro: ");
             string isbn = Console.ReadLine();
             foreach (Livro livro in livros)
             {
@@ -50,17 +49,14 @@ namespace Livraria
                 }
             }
 
-            Console.Write("Género: ");
+            Console.Write("Género do livro: ");
             string genero = Console.ReadLine();
 
-            Console.Write("Preço: ");
-            double preco = Convert.ToDouble(Console.ReadLine());
+            double preco = askdoubleOption("Preço do livro: ");
 
-            Console.Write("Taxa de IVA: ");
-            double taxaIVA = Convert.ToDouble(Console.ReadLine());
+            double taxaIVA = askdoubleOption("Taxa de IVA do livro: ");
 
-            Console.Write("Stock: ");
-            int stock = Convert.ToInt32(Console.ReadLine());
+            int stock = askIntOption("Stock do livro: ");
 
             Livro novoLivro = new Livro(codigo, titulo, autor, isbn, genero, preco, taxaIVA, stock);
             livros.Add(novoLivro);
@@ -108,8 +104,7 @@ namespace Livraria
                     switch (parameters)
                     {
                         case "codigo":
-                            Console.WriteLine("Novo Código:");
-                            livro.Codigo = Convert.ToInt32(Console.ReadLine());
+                            livro.Codigo = askIntOption("Novo Código:");
                             break;
 
                         case "titulo":
@@ -133,18 +128,18 @@ namespace Livraria
                             break;
 
                         case "preco":
-                            Console.WriteLine("Novo Preço:");
-                            livro.Preco = Convert.ToDouble(Console.ReadLine());
+
+                            livro.Preco = askdoubleOption("Novo Preço: ");
                             break;
 
                         case "taxaIVA":
-                            Console.WriteLine("Nova TaxaIVA:");
-                            livro.TaxaIVA = Convert.ToDouble(Console.ReadLine());
+
+                            livro.TaxaIVA = askdoubleOption("Nova TaxaIVA: ");
                             break;
 
                         case "stock":
-                            Console.WriteLine("Novo Stock:");
-                            livro.Stock = Convert.ToInt32(Console.ReadLine());
+
+                            livro.Stock = askIntOption("Novo Stock:");
                             break;
 
                         default:

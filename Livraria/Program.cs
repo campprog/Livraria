@@ -9,6 +9,8 @@ namespace Livraria
 {
     public class Program
     {
+        //alterar a cena default do switch
+        //meter o try and catch proprio para aqui
         private static void Main(string[] args)
         {
             Livraria livraria = new Livraria();
@@ -18,6 +20,7 @@ namespace Livraria
                 Console.WriteLine("Bem-vindo a livraria");
                 Console.WriteLine("1. Entrar na livraria");
                 Console.WriteLine("2. Sair");
+                Console.Write("Escolha a opcao: ");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {

@@ -20,10 +20,10 @@ namespace Livraria
         public void addEmployee(List<Gerente> gerentes, List<Repositor> repositores, List<Caixa> caixas)
         {
             Console.WriteLine("Qual é o funcionario que deseja empregar: ");
-            Console.WriteLine("1• Gerente");
-            Console.WriteLine("2• Repositor");
-            Console.WriteLine("3• Caixa");
-            int option = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("1. Gerente");
+            Console.WriteLine("2. Repositor");
+            Console.WriteLine("3 Caixa");
+            int option = askIntOption("Escolha a opcao: ");
 
             if (option == 1)
             {
@@ -113,7 +113,8 @@ namespace Livraria
             Console.WriteLine("1• Gerente");
             Console.WriteLine("2• Repositor");
             Console.WriteLine("3• Caixa");
-            int option = Convert.ToInt32(Console.ReadLine());
+            int option = askIntOption("Escolha a opcao: ");
+
             if (option == 1)
             {
                 if (gerentes.Count > 0)
@@ -177,7 +178,7 @@ namespace Livraria
             Console.WriteLine("1• Gerente");
             Console.WriteLine("2• Repositor");
             Console.WriteLine("3• Caixa");
-            int option = Convert.ToInt32(Console.ReadLine());
+            int option = askIntOption("Escolha a opcao: ");
             if (option == 1)
             {
                 Console.WriteLine("Estes sao todos os gerentes desta livraria que podera remover:");
