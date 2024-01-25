@@ -2,17 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Web;
 
 namespace Livraria { }
 
 public abstract class Funcionario
 {
     public string Name { get; set; }
+
+    public string Username { get; set; }
     public string Password { get; set; }
 
-    public Funcionario(string name, string password)
+    public Funcionario(string name, string username, string password)
     {
         Name = name;
+        Username = username;
         Password = password;
     }
 
@@ -66,7 +70,7 @@ public abstract class Funcionario
             Console.WriteLine("{0}", livros[i].Codigo);
         }
 
-        int codigoLivro = 1 + askIntOption("Digite o codigo do livro");
+        int codigoLivro = 1 + askIntOption("Digite o codigo do livro: ");
 
         for (int i = 0; i < livros.Count; i++)
         {

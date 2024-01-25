@@ -5,7 +5,7 @@ namespace Livraria
 {
     public class Caixa : Funcionario, IGerenteECaixa
     {
-        public Caixa(string name, string password) : base(name, password)
+        public Caixa(string name, string username, string password) : base(name, username, password)
         {
         }
 

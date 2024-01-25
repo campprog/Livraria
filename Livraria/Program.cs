@@ -11,21 +11,43 @@ namespace Livraria
     {
         //alterar a cena default do switch
         //meter o try and catch proprio para aqui
+
         private static void Main(string[] args)
         {
+            int askIntOption(string message)
+            {
+                int option = -1;
+                bool isValidOption = false;
+                do
+                {
+                    Console.Write(message);
+
+                    try
+                    {
+                        option = Convert.ToInt32(Console.ReadLine());
+                        isValidOption = true;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Opcao invalida");
+                    }
+                } while (!isValidOption);
+                return option;
+            }
+
             Livraria livraria = new Livraria();
             while (true)
             {
-                Console.Clear();
+                //
                 Console.WriteLine("Bem-vindo a livraria");
                 Console.WriteLine("1. Entrar na livraria");
                 Console.WriteLine("2. Sair");
-                Console.Write("Escolha a opcao: ");
-                int option = Convert.ToInt32(Console.ReadLine());
+                int option = askIntOption("Escolha a sua opcao: ");
                 switch (option)
                 {
                     case 1:
-                        livraria.login();
+
+                        livraria.Loginn();
                         break;
 
                     case 2:
@@ -33,11 +55,11 @@ namespace Livraria
                         break;
 
                     default:
+                        Console.Clear();
                         Console.WriteLine("Opcao invalida");
-                        livraria.login();
                         break;
                 }
-                livraria.login();
+                //livraria.login();
             }
         }
     }

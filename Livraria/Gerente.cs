@@ -5,7 +5,7 @@ namespace Livraria
 {
     public class Gerente : Funcionario, IGerenteECaixa
     {
-        public Gerente(string name, string password) : base(name, password)
+        public Gerente(string name, string username, string password) : base(name, username, password)
         {
         }
 
@@ -27,13 +27,16 @@ namespace Livraria
 
             if (option == 1)
             {
-                Console.WriteLine("Nome do Gerente");
+                Console.WriteLine("Nome do Gerente: ");
                 string nomeGerente = Console.ReadLine();
+
+                Console.WriteLine("Username do Usuario: ");
+                string usernameGerente = Console.ReadLine();
 
                 Console.WriteLine("Password do Gerente: ");
                 string passGerente = Console.ReadLine();
 
-                Gerente gerente = new Gerente(nomeGerente, passGerente);
+                Gerente gerente = new Gerente(nomeGerente, usernameGerente, passGerente);
                 gerentes.Add(gerente);
                 Console.Clear();
                 Console.WriteLine("Gerente adicionado.");
@@ -43,10 +46,13 @@ namespace Livraria
                 Console.WriteLine("Nome do Repositor");
                 string nomeRepositores = Console.ReadLine();
 
+                Console.WriteLine("Username do Repositor: ");
+                string usernameRepositor = Console.ReadLine();
+
                 Console.WriteLine("Password do Repositor: ");
                 string passRepositor = Console.ReadLine();
 
-                Repositor repositor = new Repositor(nomeRepositores, passRepositor);
+                Repositor repositor = new Repositor(nomeRepositores, usernameRepositor, passRepositor);
                 repositores.Add(repositor);
                 Console.Clear();
                 Console.WriteLine("Repositor adicionado.");
@@ -56,10 +62,13 @@ namespace Livraria
                 Console.WriteLine("Nome do Caixa");
                 string nomeCaixa = Console.ReadLine();
 
-                Console.WriteLine("Password do Repositor: ");
+                Console.WriteLine("Username do Caixa: ");
+                string usernameCaixa = Console.ReadLine();
+
+                Console.WriteLine("Password do Caixa: ");
                 string passCaixa = Console.ReadLine();
 
-                Caixa caixa = new Caixa(nomeCaixa, passCaixa);
+                Caixa caixa = new Caixa(nomeCaixa, usernameCaixa, passCaixa);
                 caixas.Add(caixa);
                 Console.Clear();
                 Console.WriteLine("Caixa adicionado.");

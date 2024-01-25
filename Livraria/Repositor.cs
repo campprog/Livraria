@@ -8,7 +8,7 @@ namespace Livraria
 {
     public class Repositor : Funcionario
     {
-        public Repositor(string name, string password) : base(name, password)
+        public Repositor(string name, string username, string password) : base(name, username, password)
         {
         }
 
