@@ -43,15 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caixa.cs" />
-    <Compile Include="Funcionario.cs" />
-    <Compile Include="Gerente.cs" />
-    <Compile Include="IGerenteECaixa.cs" />
-    <Compile Include="Livraria.cs" />
-    <Compile Include="Livro.cs" />
+    <Compile Include="Cashier.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="Manager.cs" />
+    <Compile Include="Interface\IManagerCashier.cs" />
+    <Compile Include="BookStore.cs" />
+    <Compile Include="Book.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositor.cs" />
+    <Compile Include="Stocker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

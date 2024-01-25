@@ -35,7 +35,7 @@ namespace Livraria
                 return option;
             }
 
-            Livraria livraria = new Livraria();
+            BookStore livraria = new BookStore();
             while (true)
             {
                 //

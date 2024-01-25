@@ -6,14 +6,14 @@ using System.Web;
 
 namespace Livraria { }
 
-public abstract class Funcionario
+public abstract class Employee
 {
     public string Name { get; set; }
 
     public string Username { get; set; }
     public string Password { get; set; }
 
-    public Funcionario(string name, string username, string password)
+    public Employee(string name, string username, string password)
     {
         Name = name;
         Username = username;
@@ -62,36 +62,36 @@ public abstract class Funcionario
         return option;
     }
 
-    public void checkOnInfoFromBookWithCode(List<Livro> livros)
+    public void checkOnInfoFromBookWithCode(List<Book> livros)
     {
         Console.WriteLine("Codigos dos livros:");
         for (int i = 0; i < livros.Count; i++)
         {
-            Console.WriteLine("{0}", livros[i].Codigo);
+            Console.WriteLine("{0}", livros[i].Code);
         }
 
-        int codigoLivro = 1 + askIntOption("Digite o codigo do livro: ");
+        int codigoLivro = 1 + askIntOption("Digite o code do livro: ");
 
         for (int i = 0; i < livros.Count; i++)
         {
-            if (codigoLivro == livros[i].Codigo)
+            if (codigoLivro == livros[i].Code)
             {
                 Console.Clear();
-                Console.WriteLine("O Titulo do livro é {0}", livros[i].Titulo);
-                Console.WriteLine("O autor do livro é {0}", livros[i].Autor);
+                Console.WriteLine("O Title do livro é {0}", livros[i].Title);
+                Console.WriteLine("O author do livro é {0}", livros[i].Author);
                 Console.WriteLine("O ISBN do livro é {0}", livros[i].Isbn);
-                Console.WriteLine("O Genero do livro é {0}", livros[i].Genero);
-                Console.WriteLine("O Preco do livro é {0}", livros[i].Preco);
-                Console.WriteLine("A taxa de IVA do livro é {0}", livros[i].TaxaIVA);
+                Console.WriteLine("O Genre do livro é {0}", livros[i].Genre);
+                Console.WriteLine("O Price do livro é {0}", livros[i].Price);
+                Console.WriteLine("A taxa de IVA do livro é {0}", livros[i].TaxIVA);
                 Console.WriteLine("O Stock do livro é {0}", livros[i].Stock);
                 return;
             }
         }
         Console.Clear();
-        Console.WriteLine("Codigo invalido");
+        Console.WriteLine("Code invalido");
     }
 
-    public void checkStock(List<Livro> livros)
+    public void checkStock(List<Book> livros)
     {
         int soma = 0;
         Console.Clear();
@@ -99,7 +99,7 @@ public abstract class Funcionario
         {
             soma = soma + livros[i].Stock;
 
-            Console.WriteLine("O livro com titulo {0} tem o stock de {1}", livros[i].Titulo, livros[i].Stock);
+            Console.WriteLine("O livro com title {0} tem o stock de {1}", livros[i].Title, livros[i].Stock);
         }
 
         Console.WriteLine("O stock de todos os livros é de {0}", soma);

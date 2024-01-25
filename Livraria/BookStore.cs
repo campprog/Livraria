@@ -9,38 +9,38 @@ using System.Threading.Tasks;
 
 namespace Livraria
 {
-    internal class Livraria
+    internal class BookStore
     {
-        private List<Livro> livros = new List<Livro>
+        private List<Book> livros = new List<Book>
         {
                 // Add instances of Livro to the list
-                new Livro(1, "Book 1", "Tiago Pereira", "ISBN123", "Romance", 29.99, 0.05, 50),
-                new Livro(2, "Book 2", "Pedro Pinheiro", "ISBN456", "Drama", 39.99, 0.08, 30),
-                new Livro(3, "Book 3", "Tiago Pereira", "ISBN789", "Drama", 19.99, 0.03, 70),
-                new Livro(4, "Book 4", "Pedro Pinheiro", "ISBN782", "Drama", 59.99, 0.03, 70),
+                new Book(1, "Book 1", "Tiago Pereira", "ISBN123", "Romance", 29.99, 0.05, 50),
+                new Book(2, "Book 2", "Pedro Pinheiro", "ISBN456", "Drama", 39.99, 0.08, 30),
+                new Book(3, "Book 3", "Tiago Pereira", "ISBN789", "Drama", 19.99, 0.03, 70),
+                new Book(4, "Book 4", "Pedro Pinheiro", "ISBN782", "Drama", 59.99, 0.03, 70),
         };
 
-        private List<Gerente> gerentes = new List<Gerente>
+        private List<Manager> managers = new List<Manager>
         {
-            new Gerente("Tiago","userTiago", "tiago123"),
-            new Gerente("Pedro","userPedro", "pedro123")
+            new Manager("Tiago","userTiago", "tiago123"),
+            new Manager("Pedro","userPedro", "pedro123")
         };
 
-        private List<Repositor> repositores = new List<Repositor>
+        private List<Stocker> stockers = new List<Stocker>
         {
-            new Repositor("Fernando","userFernando", "fernando123")
+            new Stocker("Fernando","userFernando", "fernando123")
         };
 
-        private List<Caixa> caixas = new List<Caixa>
+        private List<Cashier> cashiers = new List<Cashier>
         {
-            new Caixa("Dino","UserDino", "dino123")
+            new Cashier("Dino","UserDino", "dino123")
         };
 
         //fazer as exeptions
 
         //meter o login com melhor aspeto
 
-        //meter a caixa a vermelho quando da resposta invalida
+        //meter a cashier a vermelho quando da resposta invalida
         //fazer o try and catch proprio para a livraria
 
         //perguntar qual sera melhor o menu principal
@@ -90,37 +90,37 @@ namespace Livraria
             return option;
         }
 
-        private Gerente findGerente(string username, string password)
+        private Manager findManager(string username, string password)
         {
-            foreach (var gerente in gerentes)
+            foreach (var manager in managers)
             {
-                if (gerente.Username == username && gerente.Password == password)
+                if (manager.Username == username && manager.Password == password)
                 {
-                    return gerente;
+                    return manager;
                 }
             }
             return null;
         }
 
-        private Repositor findRepositor(string username, string password)
+        private Stocker findStocker(string username, string password)
         {
-            foreach (var repositor in repositores)
+            foreach (var stocker in stockers)
             {
-                if (repositor.Username == username && repositor.Password == password)
+                if (stocker.Username == username && stocker.Password == password)
                 {
-                    return repositor;
+                    return stocker;
                 }
             }
             return null;
         }
 
-        private Caixa findCaixa(string username, string password)
+        private Cashier findCashier(string username, string password)
         {
-            foreach (var caixa in caixas)
+            foreach (var cashier in cashiers)
             {
-                if (caixa.Username == username && caixa.Password == password)
+                if (cashier.Username == username && cashier.Password == password)
                 {
-                    return caixa;
+                    return cashier;
                 }
             }
             return null;
@@ -137,23 +137,23 @@ namespace Livraria
 
             Console.WriteLine("");
 
-            Gerente gerente = findGerente(username, password);
-            Repositor repositor = findRepositor(username, password);
-            Caixa caixa = findCaixa(username, password);
-            if (gerente != null)
+            Manager manager = findManager(username, password);
+            Stocker stocker = findStocker(username, password);
+            Cashier cashier = findCashier(username, password);
+            if (manager != null)
             {
-                Console.Write("Bem-Vindo {0}", gerente.Name);
-                gerenteMenu(gerente);
+                Console.Write("Bem-Vindo {0}", manager.Name);
+                managerMenu(manager);
             }
-            else if (repositor != null)
+            else if (stocker != null)
             {
-                Console.WriteLine("Bem-Vindo {0}", repositor.Name);
-                repositorMenu(repositor);
+                Console.WriteLine("Bem-Vindo {0}", stocker.Name);
+                stockerMenu(stocker);
             }
-            else if (caixa != null)
+            else if (cashier != null)
             {
-                Console.WriteLine("Bem-Vindo {0}", caixa.Name);
-                caixaMenu(caixa);
+                Console.WriteLine("Bem-Vindo {0}", cashier.Name);
+                caixaMenu(cashier);
             }
             else
             {
@@ -166,38 +166,38 @@ namespace Livraria
         {
             //Console.Clear();
             Console.WriteLine("Login as: ");
-            Console.WriteLine("1. Gerente");
-            Console.WriteLine("2. Repositor");
-            Console.WriteLine("3. Caixa");
+            Console.WriteLine("1. Manager");
+            Console.WriteLine("2. Stocker");
+            Console.WriteLine("3. Cashier");
             Console.WriteLine("4. Voltar ao inicio");
 
             int loginOption = askIntOption("Escolha a sua opcao: ");
             if (loginOption == 1)
             {
                 Console.Clear();
-                Console.WriteLine("Lista de todos os gerente:");
-                for (int i = 0; i < gerentes.Count; i++)
+                Console.WriteLine("Lista de todos os manager:");
+                for (int i = 0; i < managers.Count; i++)
                 {
-                    Console.WriteLine("{0}, {1}", i + 1, gerentes[i].Name);
+                    Console.WriteLine("{0}, {1}", i + 1, managers[i].Name);
                 }
 
                 int option = askIntOption("Escolha a sua opcao: ");
-                for (int i = 0; i < gerentes.Count; i++)
+                for (int i = 0; i < managers.Count; i++)
                 {
                     if (option == i + 1)
                     {
                         Console.Write("Digite o username:");
-                        string userGerente = Console.ReadLine();
+                        string userManager = Console.ReadLine();
 
                         Console.Write("Digite a password:");
-                        string passGerente = GetPassword();
+                        string passManager = GetPassword();
 
-                        Gerente gerente = findGerente(userGerente, passGerente);
+                        Manager manager = findManager(userManager, passManager);
                         Console.Clear();
-                        if (gerente != null)
+                        if (manager != null)
                         {
-                            Console.WriteLine("Bem-vindo Gerente:{0}", userGerente);
-                            gerenteMenu(gerentes[i]);
+                            Console.WriteLine("Bem-vindo Manager:{0}", userManager);
+                            managerMenu(managers[i]);
                             return;
                         }
                         else
@@ -207,32 +207,32 @@ namespace Livraria
                     }
                 }
 
-                Console.WriteLine("Nao existe nenhum gerente com essa opcao");
+                Console.WriteLine("Nao existe nenhum manager com essa opcao");
             }
             else if (loginOption == 2)
             {
                 Console.Clear();
-                Console.WriteLine("Lista de todos os repositor: ");
-                for (int i = 0; i < repositores.Count; i++)
+                Console.WriteLine("Lista de todos os stocker: ");
+                for (int i = 0; i < stockers.Count; i++)
                 {
-                    Console.WriteLine("{0} {1}", i + 1, repositores[i].Name);
+                    Console.WriteLine("{0} {1}", i + 1, stockers[i].Name);
                 }
                 int option = askIntOption("Escolha a sua opcao: ");
-                for (int i = 0; i < repositores.Count; i++)
+                for (int i = 0; i < stockers.Count; i++)
                 {
                     if (option == i + 1)
                     {
                         Console.Write("Digite o Username: ");
-                        string userRepositor = Console.ReadLine();
+                        string userStocker = Console.ReadLine();
                         Console.Write("Digite a password: ");
-                        string passRepositor = GetPassword();
+                        string passStocker = GetPassword();
 
-                        Repositor repositor = findRepositor(userRepositor, passRepositor);
+                        Stocker stocker = findStocker(userStocker, passStocker);
                         Console.Clear();
-                        if (repositor != null)
+                        if (stocker != null)
                         {
-                            Console.WriteLine("Bem-vindo Repositor:{0}", userRepositor);
-                            repositorMenu(repositores[i]);
+                            Console.WriteLine("Bem-vindo Stocker:{0}", userStocker);
+                            stockerMenu(stockers[i]);
                             return;
                         }
                         else
@@ -242,19 +242,19 @@ namespace Livraria
                     }
                 }
                 Console.Clear();
-                Console.WriteLine("Nao existe nenhum repositor com essa opcao");
+                Console.WriteLine("Nao existe nenhum stocker com essa opcao");
             }
             else if (loginOption == 3)
             {
-                for (int i = 0; i < caixas.Count; i++)
+                for (int i = 0; i < cashiers.Count; i++)
                 {
                     Console.Clear();
                     Console.WriteLine("Lista de todos os caixista: ");
-                    Console.WriteLine("{0} {1}", i + 1, caixas[i].Name);
+                    Console.WriteLine("{0} {1}", i + 1, cashiers[i].Name);
                 }
                 int option = askIntOption("Escolha a sua opcao: ");
 
-                for (int i = 0; i < caixas.Count; i++)
+                for (int i = 0; i < cashiers.Count; i++)
                 {
                     if (option == i + 1)
                     {
@@ -263,11 +263,11 @@ namespace Livraria
                         Console.Write("Digite a password: ");
                         string passCaixa = GetPassword();
 
-                        Caixa caixa = findCaixa(userCaixa, passCaixa);
+                        Cashier cashier = findCashier(userCaixa, passCaixa);
 
-                        if (caixa != null)
+                        if (cashier != null)
                         {
-                            caixaMenu(caixas[i]);
+                            caixaMenu(cashiers[i]);
                             return;
                         }
                         else
@@ -278,7 +278,7 @@ namespace Livraria
                     }
                 }
                 Console.Clear();
-                Console.WriteLine("Nao existe nenhum caixa com essa opcao");
+                Console.WriteLine("Nao existe nenhum cashier com essa opcao");
             }
             else if (loginOption == 4)
             {
@@ -294,11 +294,11 @@ namespace Livraria
         }
         */
 
-        public void gerenteMenu(Gerente gerente) //passa-se gerente que fiz login
+        public void managerMenu(Manager manager) //passa-se manager que fiz login
         {
             while (true)
             {
-                Console.WriteLine("\n Menu Gerente:");
+                Console.WriteLine("\n Menu Manager:");
 
                 Console.WriteLine("1. Consultar a informação de um livro a partir do código");
 
@@ -321,37 +321,37 @@ namespace Livraria
                 {
                     case 1:
 
-                        gerente.checkOnInfoFromBookWithCode(livros);
+                        manager.checkOnInfoFromBookWithCode(livros);
 
                         break;
 
                     case 2:
-                        gerente.checkStock(livros);
+                        manager.checkStock(livros);
 
                         break;
 
                     case 3:
-                        gerente.addEmployee(gerentes, repositores, caixas);
+                        manager.addEmployee(managers, stockers, cashiers);
 
                         break;
 
                     case 4:
-                        gerente.removeEmployee(gerentes, repositores, caixas);
+                        manager.removeEmployee(managers, stockers, cashiers);
 
                         break;
 
                     case 5:
-                        gerente.listEmployee(gerentes, repositores, caixas);
+                        manager.listEmployee(managers, stockers, cashiers);
 
                         break;
 
                     case 6:
-                        gerente.sellBooks(livros);
+                        manager.sellBooks(livros);
 
                         break;
 
                     case 7:
-                        gerente.checkTotalBooksSoldAndTotalRevenue(livros);
+                        manager.checkTotalBooksSoldAndTotalRevenue(livros);
 
                         break;
 
@@ -365,11 +365,11 @@ namespace Livraria
             }
         }
 
-        public void repositorMenu(Repositor repositor)
+        public void stockerMenu(Stocker stocker)
         {
             while (true)
             {
-                Console.WriteLine("\n Menu Repositor:");
+                Console.WriteLine("\n Menu Stocker:");
 
                 Console.WriteLine("1. Consultar a informação de um livro a partir do código");
 
@@ -377,9 +377,9 @@ namespace Livraria
 
                 Console.WriteLine("3. Registar livros");
 
-                Console.WriteLine("4. Consultar livros pelo genero");
+                Console.WriteLine("4. Consultar livros pelo genre");
 
-                Console.WriteLine("5. Consultar livros pelo autor");
+                Console.WriteLine("5. Consultar livros pelo author");
 
                 Console.WriteLine("6. Atualizar livros");
 
@@ -394,42 +394,42 @@ namespace Livraria
                 switch (option)
                 {
                     case 1:
-                        repositor.checkOnInfoFromBookWithCode(livros);
+                        stocker.checkOnInfoFromBookWithCode(livros);
 
                         break;
 
                     case 2:
-                        repositor.showRegistedBooks(livros);
+                        stocker.showRegistedBooks(livros);
 
                         break;
 
                     case 3:
-                        repositor.registBooks(livros);
+                        stocker.registBooks(livros);
 
                         break;
 
                     case 4:
-                        repositor.listBooksbyGenre(livros);
+                        stocker.listBooksbyGenre(livros);
 
                         break;
 
                     case 5:
-                        repositor.listBooksByAuthor(livros);
+                        stocker.listBooksByAuthor(livros);
 
                         break;
 
                     case 6:
-                        repositor.updateBooks(livros);
+                        stocker.updateBooks(livros);
 
                         break;
 
                     case 7:
-                        repositor.buyBooks(livros);
+                        stocker.buyBooks(livros);
 
                         break;
 
                     case 8:
-                        repositor.checkStock(livros);
+                        stocker.checkStock(livros);
 
                         break;
 
@@ -443,11 +443,11 @@ namespace Livraria
             }
         }
 
-        public void caixaMenu(Caixa caixa)
+        public void caixaMenu(Cashier cashier)
         {
             while (true)
             {
-                Console.WriteLine("\nMenu Caixa:");
+                Console.WriteLine("\nMenu Cashier:");
 
                 Console.WriteLine("1. Consultar a informação de um livro a partir do código");
 
@@ -461,17 +461,17 @@ namespace Livraria
                 switch (option)
                 {
                     case 1:
-                        caixa.checkOnInfoFromBookWithCode(livros);
+                        cashier.checkOnInfoFromBookWithCode(livros);
 
                         break;
 
                     case 2:
-                        caixa.sellBooks(livros);
+                        cashier.sellBooks(livros);
 
                         break;
 
                     case 3:
-                        caixa.checkStock(livros);
+                        cashier.checkStock(livros);
 
                         break;
 

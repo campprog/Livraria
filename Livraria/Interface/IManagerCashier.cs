@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Livraria
 {
-    public interface IGerenteECaixa
+    public interface IManagerECaixa
     {
-        void sellBooks(List<Livro> livros);
+        void sellBooks(List<Book> livros);
     }
 }
