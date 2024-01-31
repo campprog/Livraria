@@ -33,7 +33,7 @@ namespace Livraria
 
         private List<Cashier> cashiers = new List<Cashier>
         {
-            new Cashier("Dino","UserDino", "dino123")
+            new Cashier("Dino","userDino", "dino123")
         };
 
         //fazer as exeptions
