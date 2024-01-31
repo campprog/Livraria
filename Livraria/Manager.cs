@@ -9,14 +9,6 @@ namespace Livraria
         {
         }
 
-        private static void ApplyColor(Action<string> printFunction, string message, ConsoleColor color)
-        {
-            ConsoleColor originalColor = Console.ForegroundColor;
-            Console.ForegroundColor = color;
-            printFunction(message);
-            Console.ForegroundColor = originalColor;
-        }
-
         public void addEmployee(List<Manager> managers, List<Stocker> stockers, List<Cashier> cashiers)
         {
             Console.WriteLine("Qual é o funcionario que deseja empregar: ");
@@ -210,7 +202,7 @@ namespace Livraria
                     }
                 }
 
-                // Console.WriteLine("Manager inexistente.");
+                Console.WriteLine("Manager inexistente.");
             }
             else if (option == 2)
             {
